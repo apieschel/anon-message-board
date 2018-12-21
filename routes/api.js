@@ -12,9 +12,9 @@ module.exports = function (app) {
   
   app.route('/api/threads/test')
     .post(function(req, res) {
-      Thread.findOne({title: req.body.board}, {title: req.body.board, text: req.body.text}, {new: true, upsert: true}, function(err, data) {
+      Thread.findOneAndUpdate({title: req.body.board}, {title: req.body.board, text: req.body.text}, {new: true, upsert: true}, function(err, data) {
         if(err) throw err;
-        res.json({title: data.title, text: data.text});
+        res.json({title: data.title, text: data.text, edited: new Date()});
       });
     });
     
