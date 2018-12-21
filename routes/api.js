@@ -19,7 +19,7 @@ module.exports = function (app) {
   
   app.route('/api/threads/test')
     .post(function(req, res) {
-      res.json(req.body.board);
+      res.json({thread: req.body.board, message: req.body.text});
     });
     
   app.route('/api/replies/:board');
