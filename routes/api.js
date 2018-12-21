@@ -14,7 +14,7 @@ module.exports = function (app) {
     .post(function(req, res) {
       Thread.findOneAndUpdate({title: req.body.board}, {title: req.body.board, text: req.body.text}, {new: true, upsert: true}, function(err, data) {
         if(err) throw err;
-        res.json({title: data.title, text: data.text, edited: new Date()});
+        res.json({title: data.title, text: data.text, edited: data.updatedAt.toUTCString()});
       });
     });
     
