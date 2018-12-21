@@ -38,7 +38,7 @@
     </div>
     <hr>
     <div id="testui">
-      <h2 style="text-align: left">API Tests:</h2>
+      <h2>API Tests:</h2>
         <h4>New thread (POST /api/threads/:board)</h4>
         <form action="/api/threads/test" method="post" id="newThread">
           <input type="text" placeholder="board" id="board1" name="board" required><br>
@@ -77,7 +77,7 @@
         <form id="reportReply">
           <input type="text" placeholder="board" id="board5" name="board" required><br>
           <input type="text" placeholder="thread id" name="thread_id" required><br>
-          <input type='text' placeholder='id to report' name='reply_id' required=''><br>
+          <input type="text" placeholder="id to report" name="reply_id" required><br>
           <input type="submit" value="Submit">
         </form>
         <hr>
@@ -96,7 +96,7 @@
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
             crossorigin="anonymous"></script>
     
-    <script src="/forms.js"></script>
+    <script src="./views/forms.js"></script>
     
   </body>
 </html>
