@@ -1,14 +1,7 @@
-/*
-*
-*
-*       Complete the API routing below
-*
-*
-*/
-
 'use strict';
 
-var expect = require('chai').expect;
+const expect = require('chai').expect;
+const Thread = require("../models.js").threadModel;
 
 module.exports = function (app) {
   
@@ -19,7 +12,10 @@ module.exports = function (app) {
   
   app.route('/api/threads/test')
     .post(function(req, res) {
-      res.json({thread: req.body.board, message: req.body.text});
+      Thread.findOne({title: req.body.board}, {title: req.body.board, text: req.body.text}, {new: true, upsert: true}, function(err, data) {
+        if(err) throw err;
+        res.json({title: data.title, text: data.text});
+      });
     });
     
   app.route('/api/replies/:board');
