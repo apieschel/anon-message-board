@@ -16,6 +16,11 @@ module.exports = function (app) {
     .get(function(req, res) {
       res.json(req.params.board);
     });
+  
+  app.route('/api/threads/test')
+    .post(function(req, res) {
+      res.json(req.body.board);
+    });
     
   app.route('/api/replies/:board');
 
