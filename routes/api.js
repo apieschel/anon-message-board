@@ -13,6 +13,20 @@ module.exports = function (app) {
       }); 
     });
   
+  app.route('/api/replies/:board')
+    .post(function(req, res) {
+        Thread.findById(req.query.thread_id, function(err, data) {
+          if(err) throw err;
+          data.replycount = data.replycount + 1;
+          data.replies.push({text: req.query.text, });
+        });
+        res.json({
+          text: req.query.text, 
+          delete_password: req.query.delete_password, 
+          thread_id: req.query.thread_id
+        });
+      });
+  
   app.route('/api/threads/:board')
     .get(function(req, res) {
       Thread.find({board: req.params.board}, function(err, data) {
