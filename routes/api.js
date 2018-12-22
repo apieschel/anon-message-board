@@ -7,7 +7,7 @@ module.exports = function (app) {
   
   app.route('/api/replies/:board')
     .get(function(req, res) {
-      Thread.findOne({title: req.query.thread_id}, function(err, data) {
+      Thread.findById(req.query.thread_id, function(err, data) {
         if(err) throw err;
         res.json(data);
       }); 
@@ -15,7 +15,7 @@ module.exports = function (app) {
   
   app.route('/api/threads/:board')
     .get(function(req, res) {
-      Thread.findOne({board: req.params.board}, function(err, data) {
+      Thread.find({board: req.params.board}, function(err, data) {
         if(err) throw err;
         res.json(data);
       }); 
@@ -29,7 +29,7 @@ module.exports = function (app) {
           password: req.body.delete_password,
           board: req.params.board,
           reported: false,
-          replies: []
+          replies: ["this is a test", "this is another test"]
         }, {new: true, upsert: true}, function(err, data) {
           if(err) throw err;
           res.json({title: data.title, text: data.text, edited: data.updatedAt.toUTCString()});
