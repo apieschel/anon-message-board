@@ -8,7 +8,6 @@ let childSchema = new Schema({
 }, {timestamps: true});
                         
 let threadSchema = new Schema({
-	title: String,
 	text: String,
   password: String,
   board: String,

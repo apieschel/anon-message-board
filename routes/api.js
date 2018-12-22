@@ -40,8 +40,7 @@ module.exports = function (app) {
   
   app.route('/api/threads/:board')
     .post(function(req, res) {
-      Thread.findOneAndUpdate({title: req.body.board}, {
-          title: req.body.board, 
+      Thread.findOneAndUpdate({text: req.body.text}, {
           text: req.body.text, 
           password: req.body.delete_password,
           board: req.params.board,
