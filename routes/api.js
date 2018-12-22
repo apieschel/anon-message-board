@@ -50,8 +50,13 @@ module.exports = function (app) {
           replycount: 0
         }, {new: true, upsert: true}, function(err, data) {
           if(err) throw err;
-          res.redirect('/b/' + req.body.board + '/');
+          res.redirect('/b/' + req.params.board + '/');
       });
     });
+  
+  app.route('/api/threads/:board')
+    .delete(function(req, res) {
+      
+    }); 
   
 };
