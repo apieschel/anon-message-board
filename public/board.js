@@ -75,7 +75,7 @@ $(function() {
       type: "DELETE",
       url: url,
       data: $(this).serialize(),
-      success: function(data) { console.log(data); alert(data); }
+      success: function(data) { console.log(data); alert(data); location.reload();}
     });
     e.preventDefault();
   });        
