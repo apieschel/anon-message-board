@@ -35,7 +35,7 @@ $(function() {
         thread.push('<form action="/api/replies/'+currentURL[0]+'/" method="post" id="newReply">');
         thread.push('<input type="hidden" name="thread_id" value="'+ele._id+'">');
         thread.push('<textarea rows="5" cols="80" type="text" placeholder="Quick reply..." name="text" required=""></textarea><br>');
-        thread.push('<input type="text" placeholder="password to delete" name="delete_password" required=""><input style="margin-left: 5px" type="submit" value="Submit">')
+        thread.push('<input type="text" placeholder="password to delete" name="delete_password" required=""><input type="submit" value="Submit">')
         thread.push('</form></div></div></div>')
         boardThreads.push(thread.join(''));
       $('#boardDisplay').html(boardThreads.join(''));
