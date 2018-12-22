@@ -75,7 +75,7 @@ $(function() {
       type: "DELETE",
       url: url,
       data: $(this).serialize(),
-      success: function(data) { alert(data) }
+      success: function(data) { console.log(data.delete_password); alert(data.delete_password); }
     });
     e.preventDefault();
   });        
