@@ -26,7 +26,7 @@ module.exports = function (app) {
             thread_id: req.body.thread_id
           });
           data.save();
-          res.json(data);
+          res.redirect('/b/' + req.params.board + '/' + req.body.thread_id);
         });
     });
   
@@ -46,17 +46,12 @@ module.exports = function (app) {
           password: req.body.delete_password,
           board: req.params.board,
           reported: false,
-          replies: [
-            {text: "this is a test", delete_password: "heyo", thread_id: "whatisthis"}, 
-            {text: "this is a test", delete_password: "heyo", thread_id: "whatisthis"}
-          ],
-          replycount: 2
+          replies: [],
+          replycount: 0
         }, {new: true, upsert: true}, function(err, data) {
           if(err) throw err;
-          res.json({title: data.title, text: data.text, edited: data.updatedAt.toUTCString()});
+          res.redirect('/b/' + req.body.board + '/');
       });
     });
-    
-  app.route('/api/replies/:board');
-
+  
 };
