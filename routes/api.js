@@ -55,7 +55,9 @@ module.exports = function (app) {
   
   app.route('/api/threads/:board')
     .delete(function(req, res) {
-      res.json(req.body);  
+      Thread.deleteOne(req.body.thread_id, function(req, res) {
+        res.json(req.body);
+      });  
     }); 
   
 };
