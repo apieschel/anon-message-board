@@ -5,7 +5,7 @@ const Thread = require("../models.js").threadModel;
 
 module.exports = function (app) {
   
-  app.route('/api/threads/:board')
+  app.route('/api/replies/:board')
     .get(function(req, res) {
       res.json(req.params.board);
     });
