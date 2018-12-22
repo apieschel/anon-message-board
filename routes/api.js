@@ -15,17 +15,20 @@ module.exports = function (app) {
   
   app.route('/api/replies/:board')
     .post(function(req, res) {
-        Thread.findById(req.query.thread_id, function(err, data) {
+        console.log(req.body.thread_id);
+        console.log(req.body);
+        Thread.findById(req.body.thread_id, function(err, data) {
           if(err) throw err;
           data.replycount = data.replycount + 1;
-          data.replies.push({text: req.query.text, });
+          data.replies.push({
+            text: req.body.text, 
+            delete_password: req.body.delete_password, 
+            thread_id: req.body.thread_id
+          });
+          data.save();
+          res.json(data);
         });
-        res.json({
-          text: req.query.text, 
-          delete_password: req.query.delete_password, 
-          thread_id: req.query.thread_id
-        });
-      });
+    });
   
   app.route('/api/threads/:board')
     .get(function(req, res) {
