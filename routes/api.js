@@ -29,7 +29,11 @@ module.exports = function (app) {
           password: req.body.delete_password,
           board: req.params.board,
           reported: false,
-          replies: [{text: "this is a test", delete_password: "heyo", thread_id: "whatisthis"}, {text: "this is a test", delete_password: "heyo", thread_id: "whatisthis"}]
+          replies: [
+            {text: "this is a test", delete_password: "heyo", thread_id: "whatisthis"}, 
+            {text: "this is a test", delete_password: "heyo", thread_id: "whatisthis"}
+          ],
+          replycount: 2
         }, {new: true, upsert: true}, function(err, data) {
           if(err) throw err;
           res.json({title: data.title, text: data.text, edited: data.updatedAt.toUTCString()});

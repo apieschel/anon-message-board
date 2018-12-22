@@ -11,7 +11,8 @@ let threadSchema = new Schema({
     text: String, 
     delete_password: String, 
     thread_id: String
-  }]
+  }, {timestamps: true}],
+  replycount: Number
 }, {timestamps: true});
 
 let Thread = mongoose.model('Thread', threadSchema);
