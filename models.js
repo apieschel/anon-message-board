@@ -7,7 +7,11 @@ let threadSchema = new Schema({
   password: String,
   board: String,
   reported: Boolean,
-  replies: [String]
+  replies: [{
+    text: String, 
+    delete_password: String, 
+    thread_id: String
+  }]
 }, {timestamps: true});
 
 let Thread = mongoose.model('Thread', threadSchema);
