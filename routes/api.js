@@ -55,8 +55,14 @@ module.exports = function (app) {
   
   app.route('/api/threads/:board')
     .delete(function(req, res) {
-      Thread.deleteOne(req.body.thread_id, function(req, res) {
-        res.json(req.body);
+      Thread.findById(req.body.thread_id, function(err, doc) {
+        if(err) throw err;
+        if(req.body.delete_password === doc.password) {
+          doc.delete();
+          res.json('success!');
+        } else {
+          res.json('failed!');
+        }
       });  
     }); 
   

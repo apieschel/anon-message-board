@@ -1,4 +1,4 @@
-/* $(function() {
+$(function() {
   $('#newThread').submit(function(){
     var board = $('#board1').val();
     $(this).attr('action', "/api/threads/" + board);
@@ -59,4 +59,4 @@
     });
     e.preventDefault();
   });
-}); */
+});
