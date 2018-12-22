@@ -7,7 +7,18 @@ module.exports = function (app) {
   
   app.route('/api/replies/:board')
     .get(function(req, res) {
-      res.json(req.params.board);
+      Thread.findOne({title: req.query.thread_id}, function(err, data) {
+        if(err) throw err;
+        res.json(data);
+      }); 
+    });
+  
+  app.route('/api/threads/:board')
+    .get(function(req, res) {
+      Thread.findOne({board: req.params.board}, function(err, data) {
+        if(err) throw err;
+        res.json(data);
+      }); 
     });
   
   app.route('/api/threads/:board')
