@@ -69,8 +69,13 @@ module.exports = function (app) {
   
   app.route('/api/replies/:board')
     .delete(function(req, res) {
-      Child.findById(req.body.reply_id, function(err, doc) {
-        console.log(doc);
+      Child.findById(req.body.thread_id, function(err, doc) {
+        console.log(doc.replies);
+        for(let i = 0; i < doc.replies; i++) {
+          if(doc.replies[i]._id === req.body.reply_id) {
+            doc.replies[i].remove();
+          }
+        }
         if(err) throw err;
         if(req.body.delete_password === doc.delete_password) {
           doc.delete();
