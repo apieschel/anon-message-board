@@ -71,20 +71,13 @@ module.exports = function (app) {
     .delete(function(req, res) {
       Thread.findById(req.body.thread_id, function(err, doc) {
         if(err) throw err;
-        console.log(doc.replies);
         let delete_password;
         for(let i = 0; i < doc.replies.length; i++) {
-          console.log(typeof doc.replies[i]._id);
-          console.log(typeof req.body.reply_id);
           if(doc.replies[i]._id == req.body.reply_id) {
-            console.log('test');
-            doc.replies[i].remove();
             delete_password = doc.replies[i].delete_password;
-            console.log(delete_password);
+            doc.replies[i].remove();
           }
         }
-        console.log(doc.replies);
-        console.log(delete_password);
         if(req.body.delete_password === delete_password) {
           doc.replycount = doc.replycount - 1;
           doc.save();
