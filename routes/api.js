@@ -69,16 +69,25 @@ module.exports = function (app) {
   
   app.route('/api/replies/:board')
     .delete(function(req, res) {
-      Child.findById(req.body.thread_id, function(err, doc) {
+      Thread.findById(req.body.thread_id, function(err, doc) {
+        if(err) throw err;
         console.log(doc.replies);
-        for(let i = 0; i < doc.replies; i++) {
-          if(doc.replies[i]._id === req.body.reply_id) {
+        let delete_password;
+        for(let i = 0; i < doc.replies.length; i++) {
+          console.log(typeof doc.replies[i]._id);
+          console.log(typeof req.body.reply_id);
+          if(doc.replies[i]._id == req.body.reply_id) {
+            console.log('test');
             doc.replies[i].remove();
+            delete_password = doc.replies[i].delete_password;
+            console.log(delete_password);
           }
         }
-        if(err) throw err;
-        if(req.body.delete_password === doc.delete_password) {
-          doc.delete();
+        console.log(doc.replies);
+        console.log(delete_password);
+        if(req.body.delete_password === delete_password) {
+          doc.replycount = doc.replycount - 1;
+          doc.save();
           res.json('success!');
         } else {
           res.json('failed!');
