@@ -2,6 +2,7 @@
 
 const expect = require('chai').expect;
 const Thread = require("../models.js").threadModel;
+const Child = require("../models.js").childModel;
 
 module.exports = function (app) {
   
@@ -64,6 +65,20 @@ module.exports = function (app) {
           res.json('failed!');
         }
       });  
-    }); 
+    });
+  
+  app.route('/api/replies/:board')
+    .delete(function(req, res) {
+      Child.findById(req.body.reply_id, function(err, doc) {
+        console.log(doc);
+        if(err) throw err;
+        if(req.body.delete_password === doc.delete_password) {
+          doc.delete();
+          res.json('success!');
+        } else {
+          res.json('failed!');
+        }
+      });  
+    });
   
 };

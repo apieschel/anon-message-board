@@ -17,5 +17,7 @@ let threadSchema = new Schema({
 }, {timestamps: true});
 
 let Thread = mongoose.model('Thread', threadSchema);
+let Child = mongoose.model('Child', childSchema);
 
 exports.threadModel = Thread;
+exports.childModel = Child;
