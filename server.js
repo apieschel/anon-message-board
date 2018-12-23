@@ -11,6 +11,7 @@ const runner            = require('./test-runner');
 const mongoose = require('mongoose');
 
 const passport = require('passport');
+const session = require('express-session');
 const helmet = require('helmet');
 const app = express();
 
@@ -26,6 +27,14 @@ app.use(helmet({
     }
    }
  }));
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+}));
+
+app.use(passport.initialize());
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
