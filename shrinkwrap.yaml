@@ -4,10 +4,12 @@ dependencies:
   chai-http: 4.2.0
   cors: 2.8.5
   express: 4.16.4
+  express-session: 1.15.6
   helmet: 3.15.0
   mocha: 5.2.0
   mongodb: 3.1.10
   mongoose: 5.4.0
+  passport: 0.4.0
   zombie: 6.1.4
 packages:
   /@types/chai/4.1.7:
@@ -299,6 +301,10 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
+  /crc/3.4.4:
+    dev: false
+    resolution:
+      integrity: sha1-naHpgOO9RPxck79as9ozeNheRms=
   /cssom/0.3.4:
     dev: false
     resolution:
@@ -479,6 +485,22 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ngXzTfoRGG7fYens3/RMb6yYoVLvLMfmsSllP/mZPxNHgFq41TmPSLF/nLY7fwoclI2vElvAmILFWGUYqdjfCg==
+  /express-session/1.15.6:
+    dependencies:
+      cookie: 0.3.1
+      cookie-signature: 1.0.6
+      crc: 3.4.4
+      debug: 2.6.9
+      depd: 1.1.2
+      on-headers: 1.0.1
+      parseurl: 1.3.2
+      uid-safe: 2.1.5
+      utils-merge: 1.0.1
+    dev: false
+    engines:
+      node: '>= 0.8.0'
+    resolution:
+      integrity: sha512-r0nrHTCYtAMrFwZ0kBzZEXa1vtPVrw0dKvGSrKP4dahwBQ1BJpF2/y1Pp4sCD/0kvxV4zZeclyvfmw0B4RMJQA==
   /express/4.16.4:
     dependencies:
       accepts: 1.3.5
@@ -1072,6 +1094,12 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-IPEzZIGwg811M3mSoWlxqi2QaUc=
+  /on-headers/1.0.1:
+    dev: false
+    engines:
+      node: '>= 0.8'
+    resolution:
+      integrity: sha1-ko9dD0cNSTQmUepnlLCFfBAGk/c=
   /once/1.4.0:
     dependencies:
       wrappy: 1.0.2
@@ -1107,6 +1135,21 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-/CidTtiZMRlGDBViUyYs3I3mW/M=
+  /passport-strategy/1.0.0:
+    dev: false
+    engines:
+      node: '>= 0.4.0'
+    resolution:
+      integrity: sha1-tVOaqPwiWj0a0XlHbd8ja0QPUuQ=
+  /passport/0.4.0:
+    dependencies:
+      passport-strategy: 1.0.0
+      pause: 0.0.1
+    dev: false
+    engines:
+      node: '>= 0.4.0'
+    resolution:
+      integrity: sha1-xQlWkTR71a07XhgCOMORTRbwWBE=
   /path-is-absolute/1.0.1:
     dev: false
     engines:
@@ -1121,6 +1164,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-uULm1L3mUwBe9rcTYd74cn0GReA=
+  /pause/0.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-HUCLP9t2kjuVQ9lvtMnf1TXZy10=
   /performance-now/2.1.0:
     dev: false
     resolution:
@@ -1182,6 +1229,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-sluvZZ1YiTLD5jsqZcDmFyV2EwToyXZBfpoVOmktMmW+VEnhgakFHnasVph65fOjGPTWN0Nw3+XQaSeMayr0kg==
+  /random-bytes/1.0.0:
+    dev: false
+    engines:
+      node: '>= 0.8'
+    resolution:
+      integrity: sha1-T2ih3Arli9P7lYSMMDJNt11kNgs=
   /range-parser/1.2.0:
     dev: false
     engines:
@@ -1499,6 +1552,14 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-HRkVv/5qY2G6I8iab9cI7v1bOIdhm94dVjQCPFElW9W+3GeDOSHmy2EBYe4VTApuzolPcmgFTN3ftVJRKR2J9Q==
+  /uid-safe/2.1.5:
+    dependencies:
+      random-bytes: 1.0.0
+    dev: false
+    engines:
+      node: '>= 0.8'
+    resolution:
+      integrity: sha512-KPHm4VL5dDXKz01UuEd88Df+KzynaohSL9fBh096KWAxSKZQDI2uBrVqtvRM4rwrIrRRKsdLNML/lnaaVSRioA==
   /unpipe/1.0.0:
     dev: false
     engines:
@@ -1641,8 +1702,10 @@ specifiers:
   chai-http: ^4.2.0
   cors: ^2.8.5
   express: ^4.16.4
+  express-session: ^1.15.6
   helmet: ^3.15.0
   mocha: ^5.2.0
   mongodb: ^3.1.10
   mongoose: ^5.4.0
+  passport: ^0.4.0
   zombie: ^6.1.4

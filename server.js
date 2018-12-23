@@ -10,6 +10,7 @@ const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
 const mongoose = require('mongoose');
 
+const passport = require('passport');
 const helmet = require('helmet');
 const app = express();
 
