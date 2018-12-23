@@ -24,7 +24,8 @@ module.exports = function (app) {
           data.replies.push({
             text: req.body.text, 
             delete_password: req.body.delete_password, 
-            thread_id: req.body.thread_id
+            thread_id: req.body.thread_id,
+            reported: false
           });
           data.save();
           res.redirect('/b/' + req.params.board + '/' + req.body.thread_id);
@@ -102,7 +103,20 @@ module.exports = function (app) {
   
   app.route('/api/replies/:board')
     .put(function(req, res) {
-   
+      Thread.findById(req.body.thread_id, function(err, doc) {
+        if(err) throw err;
+        if(doc !== null) {
+          for(let i = 0; i < doc.replies.length; i++) {
+            if(doc.replies[i]._id == req.body.reply_id) {
+              doc.replies[i].reported = true;
+            }
+          }
+          doc.save();
+          res.json('Success!');    
+        } else {
+          res.json('failure'); 
+        } 
+      });  
     });
   
 };

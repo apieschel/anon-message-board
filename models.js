@@ -4,7 +4,8 @@ let Schema = mongoose.Schema;
 let childSchema = new Schema({
     text: String, 
     delete_password: String, 
-    thread_id: String
+    thread_id: String,
+    reported: Boolean
 }, {timestamps: true});
                         
 let threadSchema = new Schema({
