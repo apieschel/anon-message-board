@@ -1,6 +1,7 @@
 $(function() {
   var currentURL = window.location.pathname.slice(3);
   currentURL = currentURL.split('/');
+  var currentBoard = window.location.pathname.slice(3,-1);
 
   var url = "/api/replies/"+currentURL[0];
   $('#threadTitle').text(window.location.pathname);
