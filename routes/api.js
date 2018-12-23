@@ -62,7 +62,7 @@ module.exports = function (app) {
           doc.delete();
           res.json('success!');
         } else {
-          res.json('failed!');
+          res.json('incorrect password!');
         }
       });  
     });
@@ -83,9 +83,22 @@ module.exports = function (app) {
           doc.save();
           res.json('success!');
         } else {
-          res.json('failed!');
+          res.json('incorrect password!');
         }
       });  
+    });
+  
+  app.route('/api/threads/:board')
+    .put(function(req, res) {
+      Thread.findByIdAndUpdate(req.body.thread_id, { $set: { reported: true }}, { new: true }, function (err, tank) {
+        if (err) throw err;
+        res.json('Success!');
+      });
+    });
+  
+  app.route('/api/replies/:board')
+    .put(function(req, res) {
+   
     });
   
 };
