@@ -90,9 +90,13 @@ module.exports = function (app) {
   
   app.route('/api/threads/:board')
     .put(function(req, res) {
-      Thread.findByIdAndUpdate(req.body.thread_id, { $set: { reported: true }}, { new: true }, function (err, tank) {
+      Thread.findByIdAndUpdate(req.body.report_id, { $set: { reported: true }}, { new: true }, function (err, doc) {
         if (err) throw err;
-        res.json('Success!');
+        if(doc !== null) {
+          res.json('Success!');
+        } else {
+          res.json('Failure!');
+        }
       });
     });
   
