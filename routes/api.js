@@ -4,6 +4,20 @@ const expect = require('chai').expect;
 const Thread = require("../models.js").threadModel;
 const Child = require("../models.js").childModel;
 
+const bcrypt = require('bcrypt');
+const saltRounds = 12;
+const myPlaintextPassword = 'sUperpassw0rd!';
+const someOtherPlaintextPassword = 'pass123';
+
+bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => { /*Store hash in your db*/ });
+
+bcrypt.hash('passw0rd!', 13, (err, hash) => {
+  console.log(hash); //$2a$12$Y.PHPE15wR25qrrtgGkiYe2sXo98cjuMCG1YwSI5rJW1DSJp0gEYS
+  bcrypt.compare('passw0rd!', hash, (err, res) => {
+      console.log(res); //true
+  });
+});
+
 module.exports = function (app) {
   
   app.route('/api/replies/:board')
@@ -42,16 +56,18 @@ module.exports = function (app) {
   
   app.route('/api/threads/:board')
     .post(function(req, res) {
-      Thread.findOneAndUpdate({text: req.body.text}, {
-          text: req.body.text, 
-          password: req.body.delete_password,
-          board: req.params.board,
-          reported: false,
-          replies: [],
-          replycount: 0
-        }, {new: true, upsert: true}, function(err, data) {
-          if(err) throw err;
-          res.redirect('/b/' + req.params.board + '/');
+      bcrypt.hash(req.body.delete_password, saltRounds, (err, hash) => {
+        Thread.findOneAndUpdate({text: req.body.text}, {
+            text: req.body.text, 
+            password: hash,
+            board: req.params.board,
+            reported: false,
+            replies: [],
+            replycount: 0
+          }, {new: true, upsert: true}, function(err, data) {
+            if(err) throw err;
+            res.redirect('/b/' + req.params.board + '/');
+        });
       });
     });
   

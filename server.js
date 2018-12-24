@@ -30,12 +30,6 @@ app.use(helmet({
    }
  }));
 
-const saltRounds = 12;
-const myPlaintextPassword = 'sUperpassw0rd!';
-const someOtherPlaintextPassword = 'pass123';
-
-bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => { /*Store hash in your db*/ });
-
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.use(cors({origin: '*'})); //For FCC testing purposes only
