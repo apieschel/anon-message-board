@@ -11,8 +11,10 @@ const runner            = require('./test-runner');
 const mongoose = require('mongoose');
 
 const passport = require('passport');
+const bcrypt = require('bcrypt');
 const session = require('express-session');
 const helmet = require('helmet');
+
 const app = express();
 
 app.use(helmet({
@@ -28,13 +30,11 @@ app.use(helmet({
    }
  }));
 
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-}));
+const saltRounds = 12;
+const myPlaintextPassword = 'sUperpassw0rd!';
+const someOtherPlaintextPassword = 'pass123';
 
-app.use(passport.initialize());
+bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => { /*Store hash in your db*/ });
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
