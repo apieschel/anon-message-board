@@ -54,7 +54,7 @@ $(function() {
       type: "PUT",
       url: url,
       data: $(this).serialize(),
-      success: function(data) { alert(data) }
+      success: function(data) { alert(data); location.reload(); }
     });
     e.preventDefault();
   });
@@ -64,7 +64,7 @@ $(function() {
       type: "PUT",
       url: url,
       data: $(this).serialize(),
-      success: function(data) { alert(data) }
+      success: function(data) { alert(data); location.reload(); }
     });
     e.preventDefault();
   });
@@ -74,7 +74,7 @@ $(function() {
       type: "DELETE",
       url: url,
       data: $(this).serialize(),
-      success: function(data) { alert(data) }
+      success: function(data) { alert(data); window.location.replace("http://stackoverflow.com");}
     });
     e.preventDefault();
   });        
@@ -84,7 +84,7 @@ $(function() {
       type: "DELETE",
       url: url,
       data: $(this).serialize(),
-      success: function(data) { alert(data) }
+      success: function(data) { alert(data); location.reload(); }
     });
     e.preventDefault();
   });              

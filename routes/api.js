@@ -29,22 +29,21 @@ module.exports = function (app) {
     });
   
   app.route('/api/replies/:board')
-    .post(function(req, res) {
-        
+    .post(function(req, res) { 
       bcrypt.hash(req.body.delete_password, saltRounds, (err, hash) => {
         Thread.findById(req.body.thread_id, function(err, data) {
           if(err) throw err;
           data.replycount = data.replycount + 1;
           data.replies.push({
             text: req.body.text, 
-            delete_password: req.body.delete_password, 
+            delete_password: hash, 
             thread_id: req.body.thread_id,
             reported: false
           });
           data.save();
           res.redirect('/b/' + req.params.board + '/' + req.body.thread_id);
         });
-        
+      });
     });
   
   app.route('/api/threads/:board')
@@ -90,22 +89,24 @@ module.exports = function (app) {
   app.route('/api/replies/:board')
     .delete(function(req, res) {
       Thread.findById(req.body.thread_id, function(err, doc) {
-        if(err) throw err;
-        let delete_password;
-        for(let i = 0; i < doc.replies.length; i++) {
-          if(doc.replies[i]._id == req.body.reply_id) {
-            delete_password = doc.replies[i].delete_password;
-            doc.replies[i].remove();
+          if(err) throw err;
+          let delete_password;
+          for(let i = 0; i < doc.replies.length; i++) {
+            if(doc.replies[i]._id == req.body.reply_id) {
+              delete_password = doc.replies[i].delete_password;
+              doc.replies[i].remove();
+            }
           }
-        }
-        if(req.body.delete_password === delete_password) {
-          doc.replycount = doc.replycount - 1;
-          doc.save();
-          res.json('success!');
-        } else {
-          res.json('incorrect password!');
-        }
-      });  
+          bcrypt.compare(req.body.delete_password, delete_password, (err, bool) => {
+            if(bool) {
+              doc.replycount = doc.replycount - 1;
+              doc.save();
+              res.json('success!');
+            } else {
+              res.json('incorrect password!');
+            }
+          });
+      });
     });
   
   app.route('/api/threads/:board')
