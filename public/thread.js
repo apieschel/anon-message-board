@@ -74,7 +74,7 @@ $(function() {
       type: "DELETE",
       url: url,
       data: $(this).serialize(),
-      success: function(data) { alert(data); window.location.replace("http://stackoverflow.com");}
+      success: function(data) { alert(data); window.location.replace("/"); }
     });
     e.preventDefault();
   });        
