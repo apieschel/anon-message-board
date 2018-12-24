@@ -30,8 +30,8 @@ module.exports = function (app) {
   
   app.route('/api/replies/:board')
     .post(function(req, res) {
-        console.log(req.body.thread_id);
-        console.log(req.body);
+        
+      bcrypt.hash(req.body.delete_password, saltRounds, (err, hash) => {
         Thread.findById(req.body.thread_id, function(err, data) {
           if(err) throw err;
           data.replycount = data.replycount + 1;
@@ -44,6 +44,7 @@ module.exports = function (app) {
           data.save();
           res.redirect('/b/' + req.params.board + '/' + req.body.thread_id);
         });
+        
     });
   
   app.route('/api/threads/:board')
@@ -75,12 +76,14 @@ module.exports = function (app) {
     .delete(function(req, res) {
       Thread.findById(req.body.thread_id, function(err, doc) {
         if(err) throw err;
-        if(req.body.delete_password === doc.password) {
-          doc.delete();
-          res.json('success!');
-        } else {
-          res.json('incorrect password!');
-        }
+        bcrypt.compare(req.body.delete_password, doc.password, (err, bool) => {
+          if(bool) {
+            doc.delete();
+            res.json('Success!');
+          } else {
+            res.json('Incorrect Password!');
+          }
+        });
       });  
     });
   
