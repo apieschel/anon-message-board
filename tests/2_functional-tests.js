@@ -9,7 +9,7 @@
 var chaiHttp = require('chai-http');
 var chai = require('chai');
 var assert = chai.assert;
-var server = require('../routes/api.js');
+var server = require('../server');
 
 chai.use(chaiHttp);
 
@@ -20,7 +20,7 @@ suite('Functional Tests', function() {
     suite('GET', function() {
       test('get board', function(done) {
          chai.request(server)
-          .get('/api/threads/test')
+          .get('/b/test/')
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             done();
