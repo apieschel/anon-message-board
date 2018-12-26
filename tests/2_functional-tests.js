@@ -23,6 +23,7 @@ suite('Functional Tests', function() {
           .get('/b/test/')
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
+            console.log(res.text);
             done();
           });
       });
