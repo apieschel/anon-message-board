@@ -29,11 +29,25 @@ suite('Functional Tests', function() {
     });
     
     suite('DELETE', function() {
-      
+      test('get board', function(done) {
+         chai.request(server)
+          .get('/b/test/')
+          .end(function(err, res){
+            assert.equal(res.status, 200, 'response status should be 200');
+            done();
+          });
+      });
     });
     
     suite('PUT', function() {
-      
+      test('get board', function(done) {
+         chai.request(server)
+          .get('/b/test/')
+          .end(function(err, res){
+            assert.equal(res.status, 200, 'response status should be 200');
+            done();
+          });
+      });
     });
     
 
@@ -42,19 +56,47 @@ suite('Functional Tests', function() {
   suite('API ROUTING FOR /api/replies/:board', function() {
     
     suite('POST', function() {
-      
+      test('get board', function(done) {
+         chai.request(server)
+          .get('/b/test/')
+          .end(function(err, res){
+            assert.equal(res.status, 200, 'response status should be 200');
+            done();
+          });
+      });
     });
     
     suite('GET', function() {
-      
+      test('get board', function(done) {
+         chai.request(server)
+          .get('/b/test/')
+          .end(function(err, res){
+            assert.equal(res.status, 200, 'response status should be 200');
+            done();
+          });
+      });
     });
     
     suite('PUT', function() {
-      
+      test('get board', function(done) {
+         chai.request(server)
+          .get('/b/test/')
+          .end(function(err, res){
+            assert.equal(res.status, 200, 'response status should be 200');
+            done();
+          });
+      });
     });
     
     suite('DELETE', function() {
-      
+      test('get board', function(done) {
+         chai.request(server)
+          .get('/b/test/')
+          .end(function(err, res){
+            assert.equal(res.status, 200, 'response status should be 200');
+            done();
+          });
+      });
     });
     
   });
