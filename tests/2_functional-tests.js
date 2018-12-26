@@ -20,7 +20,20 @@ suite('Functional Tests', function() {
     suite('GET', function() {
       test('get board', function(done) {
          chai.request(server)
-          .get('/b/test/')
+          .get('/b/:board/')
+          .end(function(err, res){
+            assert.equal(res.status, 200, 'response status should be 200');
+            console.log(res.text);
+            assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
+            done();
+          });
+      });
+    });
+    
+    suite('POST', function() {
+      test('post new thread', function(done) {
+         chai.request(server)
+          .get('/b/:board/')
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             console.log(res.text);
@@ -52,7 +65,6 @@ suite('Functional Tests', function() {
       });
     });
     
-
   });
   
   suite('API ROUTING FOR /api/replies/:board', function() {
