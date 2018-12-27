@@ -34,10 +34,15 @@ suite('Functional Tests', function() {
       test('post new thread', function(done) {
          chai.request(server)
           .post('/api/threads/:board/')
-          .query({board: 'test', text: 'hey it me', password: 'delete'})
+          .type('form')
+          .send({
+            '_method': 'post',
+            'board': 'test',
+            'confirmPassword': '123'
+          })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
-            console.log(res.query);
+            console.log(res);
             assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
             done();
           });
