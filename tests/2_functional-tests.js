@@ -20,7 +20,7 @@ suite('Functional Tests', function() {
     suite('GET', function() {
       test('get board', function(done) {
          chai.request(server)
-          .get('/b/:board/')
+          .get('/b/test/')
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             console.log(res.text);
@@ -33,16 +33,16 @@ suite('Functional Tests', function() {
     suite('POST', function() {
       test('post new thread', function(done) {
          chai.request(server)
-          .post('/api/threads/:board/')
+          .post('/api/threads/test/')
           .type('form')
           .send({
             '_method': 'post',
-            'board': 'test',
-            'confirmPassword': '123'
+            'text': 'hey it me',
+            'delete_password': '123'
           })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
-            console.log(res);
+            console.log(res.text);
             assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
             done();
           });
