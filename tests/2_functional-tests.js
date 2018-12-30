@@ -71,7 +71,12 @@ suite('Functional Tests', function() {
     suite('PUT', function() {
       test('get board', function(done) {
          chai.request(server)
-          .get('/b/test/')
+          .put('/api/threads/test')
+          .type('form')
+          .send({
+             '_method': 'put', 
+             'thread_id': '5c294a1b5710b6cf42671d6c', // change this to the id of the post you want to report
+           })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             done();
