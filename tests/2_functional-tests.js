@@ -42,7 +42,7 @@ suite('Functional Tests', function() {
           })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
-            console.log(res.text);
+            //console.log(res.text);
             assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
             done();
           });
@@ -52,13 +52,17 @@ suite('Functional Tests', function() {
     suite('DELETE', function() {
       test('delete board', function(done) {
          chai.request(server)
-          .get('/api/threads/test')
+          .delete('/api/threads/test')
           .type('form')
           .send({
              '_method': 'delete',
+             'thread_id': '5c29408c5710b6cf42670e01', // change this to the id of the post you want to delete
+             'delete_password': '123' // change to the delete password of the post you want to delete
            })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
+            console.log(res.text);
+            assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
             done();
           });
       });
