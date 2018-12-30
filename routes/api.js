@@ -70,7 +70,7 @@ module.exports = function (app) {
               doc.delete();
               res.json('Success!');
             } else {
-              res.json('Incorrect Password!');
+              res.json('incorrect password');
             }
           });
         } else {
@@ -96,7 +96,7 @@ module.exports = function (app) {
               doc.save();
               res.json('success!');
             } else {
-              res.json('incorrect password!');
+              res.json('incorrect password');
             }
           });
       });
@@ -109,7 +109,7 @@ module.exports = function (app) {
         if(doc !== null) {
           res.json('Success!');
         } else {
-          res.json('Failure!');
+          res.json('failure');
         }
       });
     });
