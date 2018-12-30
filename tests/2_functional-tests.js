@@ -23,7 +23,7 @@ suite('Functional Tests', function() {
           .get('/b/test/')
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
-            console.log(res.text);
+            //console.log(res.text);
             assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
             done();
           });
@@ -50,9 +50,13 @@ suite('Functional Tests', function() {
     });
     
     suite('DELETE', function() {
-      test('get board', function(done) {
+      test('delete board', function(done) {
          chai.request(server)
-          .get('/b/test/')
+          .get('/api/threads/test')
+          .type('form')
+          .send({
+             '_method': 'delete',
+           })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             done();
