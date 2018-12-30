@@ -63,7 +63,7 @@ suite('Functional Tests', function() {
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             //console.log(res.text);
-            assert.isNotEmpty(res.text, 'response should not be an empty string');
+            assert.isNotEmpty(res.text, 'response string should not be an empty');
              expect(res.text).to.satisfy(function (val) {
                 if ((val === '"Success!"') || (val === '"incorrect password"') || (val === '"Sorry, we couldn\'t find that thread!"') ) {
                     return true;
@@ -88,7 +88,7 @@ suite('Functional Tests', function() {
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             //console.log(res.text);
-            assert.isNotEmpty(res.text, 'response should not be an empty string');
+            assert.isNotEmpty(res.text, 'response string should not be empty');
             expect(res.text).to.satisfy(function (val) {
                 if ((val === '"Success!"') || (val === '"failure"')) {
                     return true;
@@ -105,16 +105,6 @@ suite('Functional Tests', function() {
   
   suite('API ROUTING FOR /api/replies/:board', function() {
     
-    suite('POST', function() {
-      test('get board', function(done) {
-         chai.request(server)
-          .get('/api/replies/test')
-          .end(function(err, res){
-            assert.equal(res.status, 200, 'response status should be 200');
-            done();
-          });
-      });
-    });
     
     suite('GET', function() {
       test('get board', function(done) {
@@ -122,6 +112,24 @@ suite('Functional Tests', function() {
           .get('/b/test/5c294b8b5710b6cf42672013') // change to the ID of the thread where you want to see the replies
           .end(function(err, res){
             console.log(res.text);
+            assert.equal(res.status, 200, 'response status should be 200');
+            assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
+            done();
+          });
+      });
+    });
+    
+    suite('POST', function() {
+      test('get board', function(done) {
+         chai.request(server)
+          .get('/api/replies/test')
+        type('form')
+          .send({
+            '_method': 'post',
+            'text': 'hey it me',
+            'delete_password': '123'
+          })
+          .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             done();
           });
