@@ -56,12 +56,12 @@ suite('Functional Tests', function() {
           .type('form')
           .send({
              '_method': 'delete',
-             'thread_id': '5c29408c5710b6cf42670e01', // change this to the id of the post you want to delete
+             'thread_id': '5c294a1b5710b6cf42671d6c', // change this to the id of the post you want to delete
              'delete_password': '123' // change to the delete password of the post you want to delete
            })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
-            console.log(res.text);
+            //console.log(res.text);
             assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
             done();
           });

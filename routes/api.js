@@ -64,14 +64,18 @@ module.exports = function (app) {
     .delete(function(req, res) {
       Thread.findById(req.body.thread_id, function(err, doc) {
         if(err) throw err;
-        bcrypt.compare(req.body.delete_password, doc.password, (err, bool) => {
-          if(bool) {
-            doc.delete();
-            res.json('Success!');
-          } else {
-            res.json('Incorrect Password!');
-          }
-        });
+        if(doc !== null) {
+          bcrypt.compare(req.body.delete_password, doc.password, (err, bool) => {
+            if(bool) {
+              doc.delete();
+              res.json('Success!');
+            } else {
+              res.json('Incorrect Password!');
+            }
+          });
+        } else {
+          res.json("Sorry, we couldn't find that thread!");
+        }
       });  
     });
   
