@@ -63,7 +63,7 @@ suite('Functional Tests', function() {
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             //console.log(res.text);
-            assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
+            assert.isNotEmpty(res.text, 'response should not be an empty string');
             done();
           });
       });
@@ -81,7 +81,7 @@ suite('Functional Tests', function() {
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             console.log(res.text);
-            assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
+            assert.isNotEmpty(res.text, 'response should not be an empty string');
             expect(res.text).to.satisfy(function (val) {
                 if ((val === '"Success!"') || (val === '"failure"')) {
                     return true;
