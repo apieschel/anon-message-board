@@ -148,7 +148,7 @@ suite('Functional Tests', function() {
           .send({
              '_method': 'put',
              'thread_id': '5c294b8b5710b6cf42672013', // change to ID of the thread that holds the comment you want to report
-            'reply_id': '5c295dafb2ed7d41b727ec72', // change to ID of the comment you want to report
+            'reply_id': '5c295ddb8c15b041f15b2e52', // change to ID of the comment you want to report
            })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
@@ -160,7 +160,7 @@ suite('Functional Tests', function() {
                     return false;
                 }
             });
-            console.log(res.text);
+            //console.log(res.text);
             done();
           });
       });

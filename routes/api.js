@@ -98,7 +98,7 @@ module.exports = function (app) {
             if(bool) {
               doc.replycount = doc.replycount - 1;
               doc.save();
-              res.json('success!');
+              res.json('Success!');
             } else {
               res.json('incorrect password');
             }
@@ -130,9 +130,12 @@ module.exports = function (app) {
               check = true;
             }
           }
-          console.log(0
-          doc.save();
-          res.json('Success!');    
+          if(check) {
+            doc.save();
+            res.json('Success!');
+          } else {
+            res.json('failure');
+          }
         } else {
           res.json('failure'); 
         } 
