@@ -126,7 +126,7 @@ suite('Functional Tests', function() {
           .type('form')
           .send({
             '_method': 'post',
-            'text': 'hey it you',
+            'text': 'hey it me',
             'delete_password': '123',
             'thread_id': '5c294b8b5710b6cf42672013',
             'reported': false
