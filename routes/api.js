@@ -21,16 +21,20 @@ module.exports = function (app) {
     .post(function(req, res) { 
       bcrypt.hash(req.body.delete_password, saltRounds, (err, hash) => {
         Thread.findById(req.body.thread_id, function(err, data) {
-          if(err) throw err;
-          data.replycount = data.replycount + 1;
-          data.replies.push({
-            text: req.body.text, 
-            delete_password: hash, 
-            thread_id: req.body.thread_id,
-            reported: false
-          });
-          data.save();
-          res.redirect('/b/' + req.params.board + '/' + req.body.thread_id);
+          if(data !== null) {
+            if(err) throw err;
+            data.replycount = data.replycount + 1;
+            data.replies.push({
+              text: req.body.text, 
+              delete_password: hash, 
+              thread_id: req.body.thread_id,
+              reported: false
+            });
+            data.save();
+            res.redirect('/b/' + req.params.board + '/' + req.body.thread_id);
+          } else {
+            res.json("Sorry, but we couldn't find that thread!");
+          }
         });
       });
     });

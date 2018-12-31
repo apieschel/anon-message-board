@@ -38,7 +38,7 @@ suite('Functional Tests', function() {
           .type('form')
           .send({
             '_method': 'post',
-            'text': 'hey it me',
+            'text': 'hey it you',
             'delete_password': '123'
           })
           .end(function(err, res){
@@ -107,11 +107,11 @@ suite('Functional Tests', function() {
     
     
     suite('GET', function() {
-      test('get board', function(done) {
+      test('get replies to a thread', function(done) {
          chai.request(server)
           .get('/b/test/5c294b8b5710b6cf42672013') // change to the ID of the thread where you want to see the replies
           .end(function(err, res){
-            console.log(res.text);
+            //console.log(res.text);
             assert.equal(res.status, 200, 'response status should be 200');
             assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
             done();
@@ -120,17 +120,21 @@ suite('Functional Tests', function() {
     });
     
     suite('POST', function() {
-      test('get board', function(done) {
+      test('post reply to a thread', function(done) {
          chai.request(server)
-          .get('/api/replies/test')
-        type('form')
+          .post('/api/replies/test')
+          .type('form')
           .send({
             '_method': 'post',
-            'text': 'hey it me',
-            'delete_password': '123'
+            'text': 'hey it you',
+            'delete_password': '123',
+            'thread_id': '5c294b8b5710b6cf42672013',
+            'reported': false
           })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
+            assert.isNotEmpty(res.text, 'response string should not be empty');
+            console.log(res.text);
             done();
           });
       });
