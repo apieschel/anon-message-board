@@ -21,12 +21,13 @@ app.use(helmet({
   frameguard: {
      action: 'deny'
   },
+  noCache: true,
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
       styleSrc: ["'self'"],
-      scriptSrc: ["'self'", "https://code.jquery.com", "https://hyperdev.com"]
-      
+      scriptSrc: ["'self'", "https://code.jquery.com"],
+      imgSrc: ["'self'", "https://hyperdev.com", "https://glitch.com"]
     }
    }
  }));
