@@ -167,9 +167,16 @@ suite('Functional Tests', function() {
     });
     
     suite('DELETE', function() {
-      test('get board', function(done) {
+      test('delete reply', function(done) {
          chai.request(server)
-          .get('/api/replies/test')
+          .delete('/api/replies/test')
+          .type('form')
+          .send({
+             '_method': 'delete',
+             'thread_id': '5c294a1b5710b6cf42671d6c', // change to ID of the thread where the reply you want to delete is
+             'reply_id': '1', // change to ID of the reply you want to delete
+             'delete_password': '123' // change to the delete password of the reply you want to delete
+           })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             done();
