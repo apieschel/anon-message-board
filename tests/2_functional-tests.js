@@ -128,7 +128,7 @@ suite('Functional Tests', function() {
             '_method': 'post',
             'text': 'hey it me',
             'delete_password': '123',
-            'thread_id': '5c294b8b5710b6cf42672013', // change to the ID of the thread you want to reply to
+            'thread_id': '5c295ddb5710b6cf4267438d', // change to the ID of the thread you want to reply to
             'reported': false
           })
           .end(function(err, res){
@@ -173,12 +173,21 @@ suite('Functional Tests', function() {
           .type('form')
           .send({
              '_method': 'delete',
-             'thread_id': '5c294a1b5710b6cf42671d6c', // change to ID of the thread where the reply you want to delete is
-             'reply_id': '1', // change to ID of the reply you want to delete
+             'thread_id': '5c294b8b5710b6cf42672013', // change to ID of the thread where the reply you want to delete is
+             'reply_id': '5c298c6c23b44a214221d184', // change to ID of the reply you want to delete
              'delete_password': '123' // change to the delete password of the reply you want to delete
            })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
+            console.log(res.text);
+            assert.isNotEmpty(res.text, 'response string should not be an empty');
+             expect(res.text).to.satisfy(function (val) {
+                if ((val === '"Success!"') || (val === '"incorrect password"') || (val === '"Sorry, but we couldn\'t find that thread!"') ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
             done();
           });
       });

@@ -86,23 +86,27 @@ module.exports = function (app) {
   app.route('/api/replies/:board')
     .delete(function(req, res) {
       Thread.findById(req.body.thread_id, function(err, doc) {
-          if(err) throw err;
-          let delete_password;
-          for(let i = 0; i < doc.replies.length; i++) {
-            if(doc.replies[i]._id == req.body.reply_id) {
-              delete_password = doc.replies[i].delete_password;
-              doc.replies[i].remove();
+          if(doc !== null) {
+            if(err) throw err;
+            let delete_password;
+            for(let i = 0; i < doc.replies.length; i++) {
+              if(doc.replies[i]._id == req.body.reply_id) {
+                delete_password = doc.replies[i].delete_password;
+                doc.replies[i].remove();
+              }
             }
+            bcrypt.compare(req.body.delete_password, delete_password, (err, bool) => {
+              if(bool) {
+                doc.replycount = doc.replycount - 1;
+                doc.save();
+                res.json('Success!');
+              } else {
+                res.json('incorrect password');
+              }
+            });
+          } else {
+            res.json("Sorry, but we couldn't find that thread!");
           }
-          bcrypt.compare(req.body.delete_password, delete_password, (err, bool) => {
-            if(bool) {
-              doc.replycount = doc.replycount - 1;
-              doc.save();
-              res.json('Success!');
-            } else {
-              res.json('incorrect password');
-            }
-          });
       });
     });
   
