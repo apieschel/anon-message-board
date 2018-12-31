@@ -123,11 +123,14 @@ module.exports = function (app) {
       Thread.findById(req.body.thread_id, function(err, doc) {
         if(err) throw err;
         if(doc !== null) {
+          let check;
           for(let i = 0; i < doc.replies.length; i++) {
             if(doc.replies[i]._id == req.body.reply_id) {
               doc.replies[i].reported = true;
+              check = true;
             }
           }
+          console.log(0
           doc.save();
           res.json('Success!');    
         } else {

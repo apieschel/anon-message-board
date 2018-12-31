@@ -128,24 +128,39 @@ suite('Functional Tests', function() {
             '_method': 'post',
             'text': 'hey it me',
             'delete_password': '123',
-            'thread_id': '5c294b8b5710b6cf42672013',
+            'thread_id': '5c294b8b5710b6cf42672013', // change to the ID of the thread you want to reply to
             'reported': false
           })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             assert.isNotEmpty(res.text, 'response string should not be empty');
-            console.log(res.text);
+            //console.log(res.text);
             done();
           });
       });
     });
     
     suite('PUT', function() {
-      test('get board', function(done) {
+      test('report a reply', function(done) {
          chai.request(server)
-          .get('/api/replies/test')
+          .put('/api/replies/test')
+          .type('form')
+          .send({
+             '_method': 'put',
+             'thread_id': '5c294b8b5710b6cf42672013', // change to ID of the thread that holds the comment you want to report
+            'reply_id': '5c295dafb2ed7d41b727ec72', // change to ID of the comment you want to report
+           })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
+            assert.isNotEmpty(res.text, 'response string should not be empty');
+            expect(res.text).to.satisfy(function (val) {
+                if ((val === '"Success!"') || (val === '"failure"')) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            console.log(res.text);
             done();
           });
       });
