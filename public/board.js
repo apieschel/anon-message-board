@@ -11,14 +11,17 @@ $(function() {
       
       data.forEach(function(ele) {
         
-        var thread = ['<div class="thread">'];
+        let thread = ['<div class="thread">'];
+        
         thread.push('<div class="main">')
         thread.push('<p class="id">id: '+ele._id+' ('+ new Date(ele.createdAt).toUTCString() +')</p>');
         thread.push('<form id="reportThread"><input type="hidden" name="report_id" value="'+ele._id+'"><input type="submit" value="Report"></form>');
         thread.push('<form id="deleteThread"><input type="hidden" value="'+ele._id+'" name="thread_id" required=""><input type="text" placeholder="password" name="delete_password" required=""><input type="submit" value="Delete"></form>');
         thread.push('<h3>'+ele.text+'</h3>');
         thread.push('</div><div class="replies">');
-        var hiddenCount = ele.replycount - 3;
+        
+        let hiddenCount = ele.replycount - 3;
+        
         if (hiddenCount < 1) { hiddenCount = 0 };
         thread.push('<h5>'+ele.replycount+' replies total ('+hiddenCount+' hidden)- <a href="'+window.location.pathname+ele._id+'">See the full thread here</a>.</h5>');
         ele.replies.forEach(function(rep) {
