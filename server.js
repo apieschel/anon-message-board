@@ -40,6 +40,7 @@ app.route('/b/:board/')
   .get(function (req, res) {
     res.sendFile(process.cwd() + '/views/board.html');
   });
+
 app.route('/b/:board/:threadid')
   .get(function (req, res) {
     res.sendFile(process.cwd() + '/views/thread.html');
@@ -55,11 +56,9 @@ app.route('/')
 fccTestingRoutes(app);
 
 mongoose.connect(process.env.DB, {useNewUrlParser: true}, (err, db) => {
-  
   if(err) {
     console.log('Database error: ' + err);
   } else {
-    
     console.log('Successful database connection');
       
     //Routing for API 

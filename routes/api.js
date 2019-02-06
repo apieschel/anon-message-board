@@ -5,7 +5,7 @@ const Child = require("../models.js").childModel;
 const bcrypt = require('bcrypt');
 const saltRounds = 12;
 
-module.exports = function (app) {
+module.exports = function(app) {
   
   app.route('/api/replies/:board')
     .get(function(req, res) {
@@ -143,5 +143,4 @@ module.exports = function (app) {
         } 
       });  
     });
-  
 };

@@ -17,7 +17,7 @@ $(function() {
         thread.push('<div class="main">')
         thread.push('<p class="id">id: '+ele._id+' ('+ new Date(ele.createdAt).toUTCString()+')</p>');
         thread.push('<div class="flex"><form id="reportThread"><input type="hidden" name="report_id" value="'+ele._id+'"><input type="submit" value="Report" class="reportBtn"></form>');
-        thread.push('<form id="deleteThread"><input type="hidden" value="'+ele._id+'" name="thread_id" required><input type="text" placeholder="password" name="delete_password" required=""><input type="submit" value="Delete" class="deleteBtn"></form></div>');
+        thread.push('<form id="deleteThread"><input type="hidden" value="'+ele._id+'" name="thread_id" required><input type="text" placeholder="password" name="delete_password" required><input type="submit" value="Delete" class="deleteBtn"></form></div>');
         thread.push('<h3>'+ele.text+'</h3>');
         thread.push('</div><div class="replies">');
         ele.replies.forEach(function(rep) {
@@ -31,8 +31,8 @@ $(function() {
         thread.push('<div class="newReply">')
         thread.push('<form action="/api/replies/'+currentURL[0]+'/" method="post" id="newReply">');
         thread.push('<input type="hidden" name="thread_id" value="'+ele._id+'">');
-        thread.push('<textarea rows="5" cols="80" type="text" placeholder="Quick reply..." name="text" required=""></textarea><br>');
-        thread.push('<input type="text" placeholder="password to delete" name="delete_password" required=""><input type="submit" value="Submit">')
+        thread.push('<textarea rows="5" cols="80" type="text" placeholder="Quick reply..." name="text" required></textarea><br>');
+        thread.push('<input type="text" placeholder="password to delete" name="delete_password" required><input type="submit" value="Submit">')
         thread.push('</form></div></div></div>')
         boardThreads.push(thread.join(''));
       $('#boardDisplay').html(boardThreads.join(''));
@@ -54,6 +54,7 @@ $(function() {
     });
     e.preventDefault();
   });
+  
   $('#boardDisplay').on('submit','#reportReply', function(e) {
     var url = "/api/replies/"+currentURL[0];
     $.ajax({
@@ -64,6 +65,7 @@ $(function() {
     });
     e.preventDefault();
   });
+  
   $('#boardDisplay').on('submit','#deleteThread', function(e) {
     var url = "/api/threads/"+currentURL[0];
     $.ajax({
@@ -74,6 +76,7 @@ $(function() {
     });
     e.preventDefault();
   });        
+  
   $('#boardDisplay').on('submit','#deleteReply', function(e) {
     var url = "/api/replies/"+currentURL[0];
     $.ajax({

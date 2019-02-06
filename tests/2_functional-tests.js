@@ -9,14 +9,12 @@ chai.use(chaiHttp);
 suite('Functional Tests', function() {
 
   suite('API ROUTING FOR /api/threads/:board', function() {
-    
     suite('GET', function() {
       test('get board', function(done) {
          chai.request(server)
           .get('/b/test/')
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
-            //console.log(res.text);
             assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
             done();
           });
@@ -35,7 +33,6 @@ suite('Functional Tests', function() {
           })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
-            //console.log(res.text);
             assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
             done();
           });
@@ -54,13 +51,12 @@ suite('Functional Tests', function() {
            })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
-            //console.log(res.text);
             assert.isNotEmpty(res.text, 'response string should not be an empty');
              expect(res.text).to.satisfy(function (val) {
                 if ((val === '"Success!"') || (val === '"incorrect password"') || (val === '"Sorry, we couldn\'t find that thread!"') ) {
-                    return true;
+                  return true;
                 } else {
-                    return false;
+                  return false;
                 }
             });
             done();
@@ -79,31 +75,26 @@ suite('Functional Tests', function() {
            })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
-            //console.log(res.text);
             assert.isNotEmpty(res.text, 'response string should not be empty');
             expect(res.text).to.satisfy(function (val) {
                 if ((val === '"Success!"') || (val === '"failure"')) {
-                    return true;
+                  return true;
                 } else {
-                    return false;
+                  return false;
                 }
             });
             done();
           });
       });
-    });
-    
+    });  
   });
   
   suite('API ROUTING FOR /api/replies/:board', function() {
-    
-    
     suite('GET', function() {
       test('get replies to a thread', function(done) {
          chai.request(server)
           .get('/b/test/5c294b8b5710b6cf42672013') // change to the ID of the thread where you want to see the replies
           .end(function(err, res){
-            //console.log(res.text);
             assert.equal(res.status, 200, 'response status should be 200');
             assert.isNotEmpty(res.text, 'response string should be an html page, not an empty string');
             done();
@@ -126,7 +117,6 @@ suite('Functional Tests', function() {
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
             assert.isNotEmpty(res.text, 'response string should not be empty');
-            //console.log(res.text);
             done();
           });
       });
@@ -147,12 +137,11 @@ suite('Functional Tests', function() {
             assert.isNotEmpty(res.text, 'response string should not be empty');
             expect(res.text).to.satisfy(function (val) {
                 if ((val === '"Success!"') || (val === '"failure"')) {
-                    return true;
+                  return true;
                 } else {
-                    return false;
+                  return false;
                 }
             });
-            //console.log(res.text);
             done();
           });
       });
@@ -171,7 +160,6 @@ suite('Functional Tests', function() {
            })
           .end(function(err, res){
             assert.equal(res.status, 200, 'response status should be 200');
-            //console.log(res.text);
             assert.isNotEmpty(res.text, 'response string should not be an empty');
              expect(res.text).to.satisfy(function (val) {
                 if ((val === '"Success!"') || (val === '"incorrect password"') || (val === '"Sorry, but we couldn\'t find that thread!"') ) {
@@ -183,8 +171,6 @@ suite('Functional Tests', function() {
             done();
           });
       });
-    });
-    
+    });  
   });
-
 });
