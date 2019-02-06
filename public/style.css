@@ -46,8 +46,8 @@ input[type="submit"]:hover {
 
 .thread {
   border: 2px solid black;
-  padding: 5px;
-  margin-bottom: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .id {
@@ -56,4 +56,28 @@ input[type="submit"]:hover {
 
 #submitNewThread {
   margin: 50px;
+}
+
+.newThreadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newThreadContainer input[type="text"], .newThreadContainer textarea {
+  width: 600px;
+}
+
+#boardDisplay {
+  margin: 0 auto;
+  width: 650px; 
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex input[type="submit"] {
+  margin-left: 10px;
 }

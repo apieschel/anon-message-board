@@ -15,8 +15,8 @@ $(function() {
         
         thread.push('<div class="main">')
         thread.push('<p class="id">id: '+ele._id+' ('+ new Date(ele.createdAt).toUTCString() +')</p>');
-        thread.push('<form id="reportThread"><input type="hidden" name="report_id" value="'+ele._id+'"><input type="submit" value="Report"></form>');
-        thread.push('<form id="deleteThread"><input type="hidden" value="'+ele._id+'" name="thread_id" required=""><input type="text" placeholder="password" name="delete_password" required=""><input type="submit" value="Delete"></form>');
+        thread.push('<div class="flex"><form id="reportThread"><input type="hidden" name="report_id" value="'+ele._id+'"><input type="submit" value="Report"></form>');
+        thread.push('<form id="deleteThread"><input type="hidden" value="'+ele._id+'" name="thread_id" required=""><input type="text" placeholder="password" name="delete_password" required=""><input type="submit" value="Delete"></form></div>');
         thread.push('<h3>'+ele.text+'</h3>');
         thread.push('</div><div class="replies">');
         
