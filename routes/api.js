@@ -1,9 +1,7 @@
 'use strict';
 
-const expect = require('chai').expect;
 const Thread = require("../models.js").threadModel;
 const Child = require("../models.js").childModel;
-
 const bcrypt = require('bcrypt');
 const saltRounds = 12;
 

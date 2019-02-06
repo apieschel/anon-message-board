@@ -29,13 +29,12 @@
         <li>I can report a reply and change it's reported value to true by sending a <b>PUT</b> request to <i>/api/replies/{board}</i> and pass along the <code>thread_id</code> &amp; <code>reply_id</code>. (Text response will be 'success')</li>
         <li>Complete functional tests that wholely test routes and pass.</li>
       </ol>
-      <br><br>
       <a href="/b/test/">Go to testing <i>'/b/general/'</i> board</a>
     </div>
     <hr>
     <div id="testui">
       <h2>API Tests:</h2>
-        <h4>New thread (POST /api/threads/:board)</h4>
+        <h3>New thread (POST /api/threads/:board)</h3>
         <form action="/api/threads/test" method="post" id="newThread">
           <input type="text" placeholder="board" id="board1" name="board" required><br>
           <textarea type="text" placeholder="Thread text..." name="text" required></textarea><br>
@@ -43,14 +42,14 @@
           <input type="submit" value="Submit">
         </form>
         <hr>
-        <h4>Report thread (PUT /api/threads/:board)</h4>
+        <h3>Report thread (PUT /api/threads/:board)</h3>
         <form id="reportThread">
           <input type="text" placeholder="board" id="board2" name="board" required><br>
           <input type="text" placeholder="id to report" name="thread_id" required><br>
           <input type="submit" value="Submit">
         </form>
         <hr>
-        <h4>Delete thread (DELETE /api/threads/:board)</h4>
+        <h3>Delete thread (DELETE /api/threads/:board)</h3>
         <form id="deleteThread">
           <input type="text" placeholder="board" id="board3" name="board" required><br>
           <input type="text" placeholder="id to delete" name="thread_id" required><br>
@@ -58,9 +57,8 @@
           <input type="submit" value="Submit">
         </form>
         <hr>
-        
-        
-        <h4>New reply (POST /api/replies/:board)</h4>
+      
+        <h3>New reply (POST /api/replies/:board)</h3>
         <form action="/api/threads/test" method="post" id="newReply">
           <input type="text" placeholder="board" id="board4" name="board" required><br>
           <input type="text" placeholder="thread id" name="thread_id" required><br>
@@ -69,7 +67,7 @@
           <input type="submit" value="Submit">
         </form>
         <hr>
-        <h4>Report reply (PUT /api/replies/:board)</h4>
+        <h3>Report reply (PUT /api/replies/:board)</h3>
         <form id="reportReply">
           <input type="text" placeholder="board" id="board5" name="board" required><br>
           <input type="text" placeholder="thread id" name="thread_id" required><br>
@@ -77,7 +75,7 @@
           <input type="submit" value="Submit">
         </form>
         <hr>
-        <h4>Delete reply (DELETE /api/replies/:board)</h4>
+        <h3>Delete reply (DELETE /api/replies/:board)</h3>
         <form id="deleteReply">
           <input type="text" placeholder="board" id="board6" name="board" required><br>
           <input type="text" placeholder="thread id" name="thread_id" required><br>
@@ -87,12 +85,8 @@
         </form>        
     </div>
     <hr>
-    <!-- Your web-app is https, so your scripts need to be too -->
-    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
-            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
-            crossorigin="anonymous"></script>
     
-    <script src="./public/forms.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js" integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=" crossorigin="anonymous"></script>
+    <script src="./public/forms.js"></script> 
   </body>
 </html>

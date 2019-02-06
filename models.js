@@ -1,14 +1,14 @@
-let mongoose = require("mongoose");
-let Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-let childSchema = new Schema({
+const childSchema = new Schema({
     text: String, 
     delete_password: String, 
     thread_id: String,
     reported: Boolean
 }, {timestamps: true});
                         
-let threadSchema = new Schema({
+const threadSchema = new Schema({
 	text: String,
   password: String,
   board: String,
@@ -17,8 +17,8 @@ let threadSchema = new Schema({
   replycount: Number
 }, {timestamps: true});
 
-let Thread = mongoose.model('Thread', threadSchema);
-let Child = mongoose.model('Child', childSchema);
+const Thread = mongoose.model('Thread', threadSchema);
+const Child = mongoose.model('Child', childSchema);
 
 exports.threadModel = Thread;
 exports.childModel = Child;

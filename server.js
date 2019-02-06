@@ -1,22 +1,20 @@
 'use strict';
 
-const express     = require('express');
-const bodyParser  = require('body-parser');
-const expect      = require('chai').expect;
-const cors        = require('cors');
-
+const express           = require('express');
+const bodyParser        = require('body-parser');
+const expect            = require('chai').expect;
+const cors              = require('cors');
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
-const mongoose = require('mongoose');
+const mongoose          = require('mongoose');
+const passport          = require('passport');
+const bcrypt            = require('bcrypt');
+const session           = require('express-session');
+const helmet            = require('helmet');
+const app               = express();
 
-const passport = require('passport');
-const bcrypt = require('bcrypt');
-const session = require('express-session');
-const helmet = require('helmet');
-
-const app = express();
-
+// security
 app.use(helmet({
   frameguard: {
      action: 'deny'
@@ -33,9 +31,7 @@ app.use(helmet({
  }));
 
 app.use('/public', express.static(process.cwd() + '/public'));
-
 app.use(cors({origin: '*'})); //For FCC testing purposes only
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

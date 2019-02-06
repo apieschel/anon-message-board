@@ -1,20 +1,16 @@
 $(function() {
-  var currentBoard = window.location.pathname.slice(3,-1);
-  var url = "/api/threads/"+currentBoard;
+  let currentBoard = window.location.pathname.slice(3,-1);
+  let url = "/api/threads/"+currentBoard;
   $('#boardTitle').text('Welcome to '+window.location.pathname)
   $.ajax({
     type: "GET",
     url: url,
     success: function(data)
     {
-      var boardThreads= [];
-      //
-      // THIS ARRAY SET UP IS FOR CODE READABILITIES AND TESTING!
-      // THIS IS NOT WHAT IT WOULD LOOK LIKE TO GO LIVE
-      //
-      console.log(data);
+      let boardThreads= [];
+      
       data.forEach(function(ele) {
-        console.log(ele);//can I use typeScript please?!
+        
         var thread = ['<div class="thread">'];
         thread.push('<div class="main">')
         thread.push('<p class="id">id: '+ele._id+' ('+ new Date(ele.createdAt).toUTCString() +')</p>');

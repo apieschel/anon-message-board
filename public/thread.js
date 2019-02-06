@@ -1,9 +1,9 @@
 $(function() {
-  var currentURL = window.location.pathname.slice(3);
+  let currentURL = window.location.pathname.slice(3);
   currentURL = currentURL.split('/');
-  var currentBoard = window.location.pathname.slice(3,-1);
+  let currentBoard = window.location.pathname.slice(3,-1);
 
-  var url = "/api/replies/"+currentURL[0];
+  let url = "/api/replies/"+currentURL[0];
   $('#threadTitle').text(window.location.pathname);
   $.ajax({
     type: "GET",
@@ -11,7 +11,7 @@ $(function() {
     data:{thread_id: currentURL[1]},
     success: function(ele)
     {
-      var boardThreads= [];
+      let boardThreads= [];
       //
       // THIS ARRAY SET UP IS FOR CODE READABILITIES AND TESTING!
       // THIS IS NOT WHAT IT WOULD LOOK LIKE TO GO LIVE

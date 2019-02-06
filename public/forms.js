@@ -1,14 +1,16 @@
 $(function() {
   $('#newThread').submit(function(){
-    var board = $('#board1').val();
+    let board = $('#board1').val();
     $(this).attr('action', "/api/threads/" + board);
   });
+  
   $('#newReply').submit(function(){
-    var board = $('#board4').val();
+    let board = $('#board4').val();
     $(this).attr('action', "/api/replies/" + board);
   });
+  
   $('#reportThread').submit(function(e){
-    var url = "/api/threads/"+$('#board2').val();
+    let url = "/api/threads/"+$('#board2').val();
     $.ajax({
       type: "PUT",
       url: url,
@@ -20,8 +22,9 @@ $(function() {
     });
     e.preventDefault();
   });
+  
   $('#deleteThread').submit(function(e){
-    var url = "/api/threads/"+$('#board3').val();
+    let url = "/api/threads/"+$('#board3').val();
     $.ajax({
       type: "DELETE",
       url: url,
