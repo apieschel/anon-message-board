@@ -37,6 +37,7 @@ input[type="submit"]:hover {
 }
 
 .reply {
+  background: silver;
   border: 1px dotted black;
   margin: 20px;
   padding: 20px;
