@@ -28,7 +28,7 @@ $(function() {
           thread.push('<div class="reply">')
           thread.push('<p class="id">id: '+rep._id+' ('+ new Date(rep.createdAt).toUTCString() +')</p>');
           thread.push('<form id="reportReply"><input type="hidden" name="thread_id" value="'+ele._id+'"><input type="hidden" name="reply_id" value="'+rep._id+'"><input type="submit" value="Report" class="reportBtn"></form>');
-          thread.push('<form id="deleteReply"><input type="hidden" value="'+ele._id+'" name="thread_id" required><input type="hidden" value="'+rep._id+'" name="reply_id" required=""><input type="text" placeholder="password" name="delete_password" required><input type="submit" value="Delete" class="deleteBtn"></form>');
+          thread.push('<form id="deleteReply"><input type="hidden" value="'+ele._id+'" name="thread_id" required><input type="hidden" value="'+rep._id+'" name="reply_id" required><input type="text" placeholder="password" name="delete_password" required><input type="submit" value="Delete" class="deleteBtn"></form>');
           thread.push('<p>'+rep.text+'</p>');
           thread.push('</div>')
         });
@@ -36,7 +36,7 @@ $(function() {
         thread.push('<form action="/api/replies/'+currentBoard+'/" method="post" id="newReply">');
         thread.push('<input type="hidden" name="thread_id" value="'+ele._id+'">');
         thread.push('<textarea rows="5" cols="80" type="text" placeholder="Quick reply..." name="text" required=""></textarea><br>');
-        thread.push('<input type="text" placeholder="password to delete" name="delete_password" required=""><input type="submit" value="Submit">')
+        thread.push('<input type="text" placeholder="password to delete" name="delete_password" required><input type="submit" value="Submit">')
         thread.push('</form></div></div></div>')
         boardThreads.push(thread.join(''));
       });
@@ -58,6 +58,7 @@ $(function() {
     });
     e.preventDefault();
   });
+  
   $('#boardDisplay').on('submit','#reportReply', function(e) {
     var url = "/api/replies/"+currentBoard;
     $.ajax({
@@ -68,6 +69,7 @@ $(function() {
     });
     e.preventDefault();
   });
+  
   $('#boardDisplay').on('submit','#deleteThread', function(e) {
     var url = "/api/threads/"+currentBoard;
     $.ajax({
@@ -77,7 +79,8 @@ $(function() {
       success: function(data) { console.log(data); alert(data); location.reload();}
     });
     e.preventDefault();
-  });        
+  }); 
+  
   $('#boardDisplay').on('submit','#deleteReply', function(e) {
     var url = "/api/replies/"+currentBoard;
     $.ajax({

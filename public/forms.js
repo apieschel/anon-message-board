@@ -36,6 +36,7 @@ $(function() {
     });
     e.preventDefault();
   });
+  
   $('#reportReply').submit(function(e){
     var url = "/api/replies/"+$('#board5').val();
     $.ajax({
@@ -49,6 +50,7 @@ $(function() {
     });
     e.preventDefault();
   });
+  
   $('#deleteReply').submit(function(e){
     var url = "/api/replies/"+$('#board6').val();
     $.ajax({

@@ -12,12 +12,8 @@ $(function() {
     success: function(ele)
     {
       let boardThreads= [];
-      //
-      // THIS ARRAY SET UP IS FOR CODE READABILITIES AND TESTING!
-      // THIS IS NOT WHAT IT WOULD LOOK LIKE TO GO LIVE
-      //
-        console.log(ele);//can I use typeScript please?!
-        var thread = ['<div class="thread">'];
+      
+        let thread = ['<div class="thread">'];
         thread.push('<div class="main">')
         thread.push('<p class="id">id: '+ele._id+' ('+ new Date(ele.createdAt).toUTCString()+')</p>');
         thread.push('<div class="flex"><form id="reportThread"><input type="hidden" name="report_id" value="'+ele._id+'"><input type="submit" value="Report" class="reportBtn"></form>');
