@@ -1,15 +1,15 @@
 dependencies:
-  bcrypt: 3.0.3
+  bcrypt: 3.0.4
   body-parser: 1.18.3
   chai: 4.2.0
   chai-http: 4.2.1
   cors: 2.8.5
   express: 4.16.4
   express-session: 1.15.6
-  helmet: 3.15.0
+  helmet: 3.15.1
   mocha: 5.2.0
   mongodb: 3.1.13
-  mongoose: 5.4.10
+  mongoose: 5.4.14
   passport: 0.4.0
   zombie: 6.1.4
 packages:
@@ -144,7 +144,7 @@ packages:
     dev: false
     resolution:
       integrity: sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
-  /bcrypt/3.0.3:
+  /bcrypt/3.0.4:
     bundledDependencies:
       - node-pre-gyp
     dependencies:
@@ -154,7 +154,7 @@ packages:
       node: '>= 6.0.0'
     requiresBuild: true
     resolution:
-      integrity: sha512-4EuzUo6K790QC3uq/ogzy9w2Hc7XDIBoEndU5y7l7YaEAwQF8vyFqv6tC30+gOBZvyxk3F632xzKBQoLNz2pjg==
+      integrity: sha512-XqmCym97kT6l+jFEKeFvGuNE9aVEFDGsLMv+tIBTXkJI1sHS0g8s7VQEPJagSMPwWiB5Vpr2kVzVKc/YfwWthA==
   /bluebird/3.5.1:
     dev: false
     resolution:
@@ -395,6 +395,12 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
+  /depd/2.0.0:
+    dev: false
+    engines:
+      node: '>= 0.8'
+    resolution:
+      integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==
   /destroy/1.0.4:
     dev: false
     resolution:
@@ -702,8 +708,9 @@ packages:
     dev: false
     resolution:
       integrity: sha512-sCHwywg4daQ2mY0YYwXSZRsgcCeerUwxMwNixGA7aMLkVmPTYBl7gJoZDHOZyXkqPrtuDT3s2B1A+RLI7WxSdQ==
-  /helmet/3.15.0:
+  /helmet/3.15.1:
     dependencies:
+      depd: 2.0.0
       dns-prefetch-control: 0.1.0
       dont-sniff-mimetype: 1.0.0
       expect-ct: 0.1.1
@@ -722,7 +729,7 @@ packages:
     engines:
       node: '>= 0.10.0'
     resolution:
-      integrity: sha512-j9JjtAnWJj09lqe/PEICrhuDaX30TeokXJ9tW6ZPhVH0+LMoihDeJ58CdWeTGzM66p6EiIODmgAaWfdeIWI4Gg==
+      integrity: sha512-hgoNe/sjKlKNvJ3g9Gz149H14BjMMWOCmW/DTXl7IfyKGtIK37GePwZrHNfr4aPXdKVyXcTj26RgRFbPKDy9lw==
   /hide-powered-by/1.0.0:
     dev: false
     resolution:
@@ -1024,7 +1031,7 @@ packages:
       mongoose: '*'
     resolution:
       integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
-  /mongoose/5.4.10:
+  /mongoose/5.4.14:
     dependencies:
       async: 2.6.1
       bson: 1.1.0
@@ -1034,7 +1041,7 @@ packages:
       mongoose-legacy-pluralize: 1.0.2
       mpath: 0.5.1
       mquery: 3.2.0
-      ms: 2.0.0
+      ms: 2.1.1
       regexp-clone: 0.0.1
       safe-buffer: 5.1.2
       sliced: 1.0.1
@@ -1042,7 +1049,7 @@ packages:
     engines:
       node: '>=4.0.0'
     resolution:
-      integrity: sha512-yJl+A7p8QF++tyBl6fRGFON5GV57MTXLKNiaiqgX5vZs1qJpcZpPiUGU5odBiqTHFYPybuRp8dW9Qtv4K6SxBQ==
+      integrity: sha512-lAISH4xdx0/o0bVWPB4bxApP3bA1b08oHPEjTBq3/mIr4R494hepDJJowByBgpGYf8tj/oe6VkFCx8wbRcOciA==
   /mpath/0.5.1:
     dev: false
     engines:
@@ -1708,16 +1715,16 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
-  bcrypt: ^3.0.3
+  bcrypt: ^3.0.4
   body-parser: ^1.18.3
   chai: ^4.2.0
   chai-http: ^4.2.1
   cors: ^2.8.5
   express: ^4.16.4
   express-session: ^1.15.6
-  helmet: ^3.15.0
+  helmet: ^3.15.1
   mocha: ^5.2.0
   mongodb: ^3.1.11
-  mongoose: ^5.4.10
+  mongoose: ^5.4.13
   passport: ^0.4.0
   zombie: ^6.1.4

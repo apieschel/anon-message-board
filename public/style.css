@@ -5,6 +5,12 @@ body {
   padding: 1% 5%;
 }
 
+body .glitchButton {
+  position: fixed;
+  right: 20px; 
+  top: 20px;
+}
+
 input[type="text"], textarea {
   font-size: 18px;
   margin-bottom: 3px;
